@@ -60,9 +60,9 @@
 \node[est, right=8mm of kf] (pred) {Predictor\\$\Phi(\tau)$, $0\!\le\!\tau\!\le\! t_p$};
 \node[est, right=11mm of pred] (ref) {Elevation\\reference\\$\operatorname{atan2}$, limits};
 \node[sum, right=12mm of ref] (s1) {};
-\node[ctl, right=6mm of s1] (gc) {$G_c(s)$\\PI\,+\,notch};
+\node[ctl, right=6mm of s1] (gc) {PI stage\\of $G_c(s)$};
 \node[sum, right=5mm of gc] (s2) {};
-\node[ctl, right=4mm of s2] (sat) {limiter};
+\node[ctl, right=4mm of s2] (sat) {limiter,\\notch $N(s)$};
 \node[plt, right=8mm of sat] (gp) {$G_p(s)$\\turret drive};
 \node[ctl] (fire) at ($(gc)+(6mm,-21mm)$) {Fire logic: aim gate, confidence gate, recharge};
 \node[ctl, above=5mm of gc] (ff) {rate aiding $s/k_v$};

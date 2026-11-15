@@ -106,9 +106,9 @@ The conversion bias is of order $r\sigma_\theta^2/2<10^{-4}$~m and is ignored, s
 The predicted state is $\hat{\mathbf x}(t+\tau|t_k)=\bm\Phi(t+\tau-t_k)\hat{\mathbf x}_k$. Setting $\tau=t_p$ gives $\theta_p$; setting $\tau=0$ gives the due-time reference (\ref{eq:ref}), which is limited to $[-9.5^\circ,84.5^\circ]$ to stay off the stops. The predicted LOS rate is $\dot\theta_{ref}=(\hat x\hat v_y-\hat y\hat v_x)/(\hat x^2+\hat y^2)$.
 
 \subsection{Closed-loop model}
-With $L(s)=G_c(s)G_p(s)$, $S=1/(1+L)$ and $T=L/(1+L)$, the servo error $e=\theta_{ref}-\theta_t$ under feedback alone is $e=S\,\theta_{ref}$. Adding the rate-aiding voltage $V_{ff}=\dot\theta_{ref}/k_v$ outside the loop gives
+With $L(s)=G_c(s)G_p(s)$, $S=1/(1+L)$ and $T=L/(1+L)$, the servo error $e=\theta_{ref}-\theta_t$ under feedback alone is $e=S\,\theta_{ref}$. Adding the rate-aiding voltage $V_{ff}=\dot\theta_{ref}/k_v$ outside the loop, ahead of the notch $N(s)$, gives
 \begin{equation}
-e=S(s)\Big[1-\frac{sG_p(s)}{k_v}\Big]\theta_{ref}=S(s)\,\frac{s\,(s+2\zeta_p\omega_p)}{s^2+2\zeta_p\omega_ps+\omega_p^2}\;\theta_{ref}.
+e=S\Big[1-\tfrac{sNG_p}{k_v}\Big]\theta_{ref}=S\,\frac{s\,(s+2\zeta_d\omega_p)}{s^2+2\zeta_d\omega_ps+\omega_p^2}\,\theta_{ref}.
 \label{eq:err}
 \end{equation}
 The pointing error splits into an estimation part and a servo part,
@@ -278,7 +278,7 @@ A Singer-model Kalman filter, due-time execution of its predictions, a PI-plus-n
 \clearpage
 \appendices
 \section{Use of AI and Computational Tools}
-\textbf{Tools.} Claude (Anthropic), used as a coding agent in Claude Code; MATLAB R2025a (no toolboxes required); MiKTeX/pdfLaTeX with TikZ.
+\textbf{Tools.} Claude (Anthropic), used as a coding agent in Claude Code; ChatGPT (OpenAI), used by the author to cross-check the hand derivations and to help write the design decision log; MATLAB R2025a (no toolboxes required); MiKTeX/pdfLaTeX with TikZ.
 
 \textbf{Contribution of each tool.} Claude proposed the architecture, derived the models, wrote all MATLAB code and scripts, ran the simulations through MATLAB, and wrote the first complete draft of this paper, including figures and tables. MATLAB executed every numerical result; no number in the paper was produced by the language model without a script that reproduces it (\texttt{design\_controller.m}, \texttt{run\_scenarios.m}, \texttt{run\_final\_evaluation.m}, \texttt{run\_stress\_tests.m}). The author set the task, directed the work, requested the independent stress tests of Section~VI, and takes responsibility for the submitted design. After the AI's proposal, the author reviewed the principal design decisions and recorded his own reasoning on each (\texttt{design-decisions.md} in the repository) and re-derived parts of the model and controller analysis by hand (\texttt{handwritten/}).
 
