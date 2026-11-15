@@ -1,0 +1,37 @@
+================ PLANT ================
+J_eq = 3200 kg m^2 (turret 1200 + reflected rotor 2000)
+Gp(s) = 1000 / (320 s^3 + 3350 s^2 + 1001500 s)
+      = 3.1250 / ( s (s^2 + 10.469 s + 3129.7) )
+poles: 0, -5.234 +/- j55.698   (wn = 55.94 rad/s, zeta = 0.0936)
+velocity gain k_v = 9.9850e-04 rad/s per V  (1001 V per rad/s)
+resonant magnification 1/(2 zeta) = 5.34 (14.6 dB)
+check of turret_plant.m: speed at 100 V = 0.09985 rad/s (TF: 0.09985), ringing at 55.69 rad/s (TF: 55.70)
+
+================ REQUIREMENTS ================
+pointing tolerance R_eng/r: 2.50 mrad at 800 m ... 1.00 mrad at 2000 m
+max LOS rate v_max/r_min = 0.1875 rad/s  -> needs 188 V of back-emf
+max LOS acceleration a_max/r_min + v_max^2/r_min^2 = 0.0602 rad/s^2
+type-1 loop would need Kv >= 188 1/s for 1 mrad at max LOS rate -> type-2 loop chosen
+
+================ COMPENSATOR ================
+Gc(s) = Kp (s + z_i)/s * (s^2 + 2 zeta_p wn s + wn^2)/(s^2 + 2 zeta_d wn s + wn^2)
+Kp = 14748 V/rad, z_i = 3.00 rad/s (Ki = 44243 V/(rad s)), wn = 55.94 rad/s, zeta_p = 0.0936, zeta_d = 0.70
+closed-loop poles:
+      -3.969
+      -5.234 +/- j55.698  (wn = 55.94, zeta = 0.094)
+     -19.892
+     -27.230 +/- j31.777  (wn = 41.85, zeta = 0.651)
+gain crossover 15.00 rad/s, phase margin 56.7 deg, gain margin 13.8 dB at 53.8 rad/s
+delay margin 65.9 ms, Ms = 1.46, Mt = 1.19, -3 dB bandwidth 29.4 rad/s, noise bandwidth 36.6 rad/s
+step: overshoot 16.7 %, rise time 0.067 s, 2 % settling 0.79 s
+error constants: Kp = inf, Kv = inf, Ka = 44.2 1/s^2
+steady-state error for LOS acceleration: 1.362 mrad at 0.060 rad/s^2 (worst case), 0.453 mrad at 0.02 rad/s^2
+PI alone (no notch), same gains: stable = 0, max Re(pole) = +2.12, |L| at resonance = 1.43
+PI alone: 6 dB margin at the resonance needs Kp <= 5242 V/rad, i.e. crossover <= 5.2 rad/s
+
+robustness to resonance mismatch (notch fixed):
+   wn x 0.8: stable = 1, PM = 55.8 deg, GM = 3.1 dB
+   wn x 0.9: stable = 1, PM = 56.4 deg, GM = 7.5 dB
+   wn x 1.0: stable = 1, PM = 56.7 deg, GM = 13.8 dB
+   wn x 1.1: stable = 1, PM = 56.9 deg, GM = 14.0 dB
+   wn x 1.2: stable = 1, PM = 57.0 deg, GM = 13.0 dB

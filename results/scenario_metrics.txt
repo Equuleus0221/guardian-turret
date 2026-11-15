@@ -1,0 +1,20 @@
+Mean over 50 noise realisations per scenario; tracking statistics for t >= 2 s
+
+metric                                                  A              B              C
+Interception success (runs)                         50/50          50/50          50/50
+Pulses hit / issued                               500/500        500/500        500/500
+Interception time, mean (max) [s]             0.50 (0.55)    0.50 (0.57)    0.50 (0.55)
+Miss at pulse, mean (max) [m]                 0.32 (1.44)    0.38 (1.68)    0.39 (1.55)
+Beam--target miss, RMS [m]                           0.36           0.48           0.47
+Beam--target miss, worst [m]                         1.39           1.70           1.60
+Pointing error, RMS [mrad]                          0.264          0.335          0.322
+estimation part [mrad]                              0.215          0.270          0.261
+servo part [mrad]                                   0.167          0.179          0.175
+t_p-ahead prediction error, RMS [m]                  1.09           2.77           2.75
+Time inside R_{eng} [%]                             100.0          100.0          100.0
+Tracking voltage, RMS [V]                              30             31             31
+
+Representative runs (default seed):
+A: t_int = 0.500 s, pulses at [0.5 1.501 2.502 3.503 4.504 5.505 6.506 7.507 8.508 9.509] s, miss [0.1 0.46 0.18 0.2 0.14 0.17 0.37 0.06 0.44 0.1] m, V_peak = 923 V, i_peak = 76 A
+B: t_int = 0.503 s, pulses at [0.503 1.504 2.505 3.506 4.507 5.508 6.509 7.51 8.511 9.512] s, miss [0.42 0.02 0.09 0.23 0.62 0.24 0.08 0.12 0.14 0.73] m, V_peak = 923 V, i_peak = 76 A
+C: t_int = 0.531 s, pulses at [0.531 1.55 2.551 3.552 4.553 5.582 6.583 7.584 8.585 9.586] s, miss [0.65 0.2 0.91 0.2 0.09 0.28 0.31 0.35 0.35 0.31] m, V_peak = 923 V, i_peak = 76 A

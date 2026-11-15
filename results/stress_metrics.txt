@@ -1,0 +1,30 @@
+PART 1: target-motion families (40 cases each, default interface)
+family                             intercept  pulses hit   t_int     max    miss     max  trkRMS  trkMax
+straight                             40/40     387/387      0.75    1.30    0.32    1.49    0.39    2.52
+jink                                 40/40     386/386      0.80    1.57    0.37    1.53    0.59    5.73
+turn                                 40/40     384/384      0.87    1.53    0.34    1.60    0.45    4.31
+reversal                             40/40     386/386      0.77    1.35    0.32    1.40    0.51    4.52
+crosser                              40/40     379/379      0.87    1.59    0.25    1.16    0.29    2.13
+highel                               40/40     360/360      1.54    1.88    0.35    1.27    0.56    5.09
+multiloss                            40/40     379/379      0.81    1.60    0.45    1.74    0.87    6.58
+TOTAL                               280/280   2661/2661 
+
+PART 2: calling conventions (30 jink cases each)
+variant                            intercept  pulses hit   t_int     max    miss     max  trkRMS  trkMax
+baseline: rk4, 1 ms, pulse           30/30     293/293      0.75    1.57    0.38    1.53    0.57    4.47
+euler, 1 ms                          30/30     294/294      0.74    1.57    0.38    1.47    0.57    4.48
+rk4, 2 ms                            30/30     293/293      0.74    1.57    0.37    1.53    0.57    4.47
+rk4, 5 ms                            30/30     294/294      0.69    1.44    0.36    1.45    0.57    4.47
+rk4, 10 ms                           30/30     291/291      0.83    1.57    0.39    1.45    0.57    4.47
+controller inside RK4 stages         30/30     292/292      0.76    1.57    0.42    1.60    0.63    4.31
+meas_valid held high                 30/30     293/293      0.75    1.57    0.38    1.53    0.57    4.47
+held + controller in RK4 stages      30/30     293/293      0.76    1.57    0.38    1.54    0.57    4.47
+NaN measurements during loss         30/30     293/293      0.75    1.57    0.38    1.53    0.57    4.47
+turret starts at +85 deg             30/30     274/274      1.27    1.63    0.42    1.67    0.57    4.47
+turret starts at -10 deg             30/30     288/288      0.97    1.58    0.40    1.51    0.57    4.47
+radar phase 20 ms                    30/30     293/293      0.77    1.57    0.38    1.51    0.59    5.69
+first call at t = 1 ms               30/30     293/293      0.75    1.57    0.38    1.53    0.57    4.47
+TOTAL                               390/390   3784/3784 
+
+Pulses outside R_eng = 2 m:
+  none
